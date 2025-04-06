@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Морской бой</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+        }
+        canvas {
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        function drawGrid() {
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 10; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * (width / 10), 0);
+                ctx.lineTo(i * (width / 10), height);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, i * (height / 10));
+                ctx.lineTo(width, i * (height / 10));
+                ctx.closePath();
+                ctx.stroke();
+            }
+        }
+
+        function drawShips() {
+            // Здесь будет логика рисования кораблей
+        }
+
+        function handleClick(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            console.log(`Clicked at ${x}, ${y}`);
+            // Логика обработки кликов
+        }
+
+        canvas.addEventListener('click', handleClick);
+
+        drawGrid();
+        drawShips();
+    </script>
+</body>
+</html>
